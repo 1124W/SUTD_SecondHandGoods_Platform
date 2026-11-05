@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block styles %}
+{% endblock %}
+{% block content %}
+    <div class="container product">
+        <div class="left-column">
+            <img src="{{ detial.pic_link }}" alt="">
+        </div>
+        <div class="right-column">
+            <!-- Product Description -->
+            <div class="product-description">
+              <span>{{ detial.category }}</span><span style="float: right">{{ detial.date }}</span>
+              <h1>{{ detial.name }}</h1>
+              <p>{{ detial.description }}</p>
+            </div>
+
+            <p><strong>Seller:</strong> <a href="{{ detial.user_url }}">{{ detial.seller }}</a></p> <!-- author detail link not yet defined -->
+
+            {% if detial.quantity > 0 %}
+                <p><strong>Quantity:</strong> {{ detial.quantity }}</p>
+
+                {% if denied %}
+
+                    <p><strong>This is your own product</strong></p>
+
+                {% else %}
+                    <!-- Product Pricing -->
+                    <div class="product-price">
+                      <span>{{ detial.price }}$</span>
+                    </div>
+                    <a href="{{ detial.order_url }}" role="button" class="cart-btn">Buy!!!</a>
+
+                {% endif %}
+
+            {% else %}
+                <button class="cart-btn" type="button" disabled style="background-color: gray">SOLD OUT!</button>
+            {% endif %}
+        </div>
+
+    </div>
+
+{% endblock %}
